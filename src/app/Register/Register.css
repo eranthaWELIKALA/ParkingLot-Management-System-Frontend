@@ -1,0 +1,24 @@
+.register {
+    margin-top: 2rem;
+    background-color: teal;
+    border-radius: 1rem;
+    padding: 1rem;
+}
+
+#registerHeader {
+    text-align: center;
+}
+
+.row {
+    margin: 1rem;
+}
+
+.btn-submit {
+    margin-top: 1rem;
+    float: right;
+    background-color: green;
+}
+
+.link {
+    color: yellow;
+}

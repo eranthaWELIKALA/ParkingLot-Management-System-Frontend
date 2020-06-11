@@ -1,0 +1,30 @@
+.login {
+    margin-top: 10rem;
+    background-color: teal;
+    border-radius: 1rem;
+    padding: 1rem;
+}
+
+@media only screen and (max-width: 576px) {
+    .login {
+        margin-top: 2rem
+    }
+}
+
+#loginHeader {
+    text-align: center;
+}
+
+.row {
+    margin: 1rem;
+}
+
+.btn-submit {
+    margin-top: 1rem;
+    float: right;
+    background-color: green;
+}
+
+.link {
+    color: yellow;
+}
