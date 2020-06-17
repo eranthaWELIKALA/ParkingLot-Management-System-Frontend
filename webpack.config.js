@@ -29,14 +29,14 @@ module: {
 resolve: { extensions: ["*", ".js", ".jsx"] },
 output: {
     path: DIST_DIR + "/app",
-    publicPath: DIST_DIR,
+    publicPath: "/dist/",
     filename: "bundle.js"
 },
 devServer: {
     contentBase: PUBLIC_DIR,
     port: 3000,
     publicPath: "http://localhost:3000/dist",
-    hotOnly: true,
+    hot: true,
     historyApiFallback: true
 },
 plugins: [new webpack.HotModuleReplacementPlugin()]

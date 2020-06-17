@@ -183,7 +183,13 @@ export class Register extends React.Component {
         event.preventDefault();
         
         if(this.validateUserDetails(req)){
-            axios.post("http://localhost:8080/user/create", req).then(res=>{
+            const options = {
+                headers: {"Access-Control-Allow-Origin": "*",
+                        "Access-Control-Allow-Headers": "*",
+                        "Access-Control-Allow-Methods": "*"
+                }
+            }
+            axios.post("http://localhost:8080/user/register", req, options).then(res=>{
                 console.log(res);
                 this.setState({
                     alert: success("User account was created successfully", false)

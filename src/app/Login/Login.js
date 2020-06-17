@@ -3,13 +3,15 @@ import "./Login.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { success, danger } from "../Util/Alert/Alerts";
+import { Redirect } from "react-router-dom";
 
 export class Login extends React.Component {
     constructor() {
         super();
         this.state = {
             nic: "",
-            password: ""
+            password: "",
+            redirect: null
         }
     }
 
@@ -35,12 +37,27 @@ export class Login extends React.Component {
             password: this.state.password
         }
         event.preventDefault();
+        const options = {
+            headers: {
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Headers": "*",
+                "Access-Control-Allow-Methods": "*"
+            }
+        }
         
-        axios.post("http://localhost:8080/user/login", req).then(res=>{
+        axios.post("http://localhost:8080/user/login", req, options).then(res=>{
             console.log(res);
-            this.setState({
-                alert: success("Logged in successfully", false)
-            })
+            if(res.data==""){                
+                this.setState({
+                    alert: danger("Login failed", false)
+                })
+            }
+            else{
+                this.setState({
+                    alert: success("Logged in successfully", false),
+                    redirect: "/create_reservation"
+                })
+            }
         })
         .catch(err=>{
             console.log(err);
@@ -51,6 +68,9 @@ export class Login extends React.Component {
     }
 
     render() {
+        if (this.state.redirect) {
+            return <Redirect to={this.state.redirect} />
+        }
         const { nic, password, alert } = this.state
         return (
             <div>
