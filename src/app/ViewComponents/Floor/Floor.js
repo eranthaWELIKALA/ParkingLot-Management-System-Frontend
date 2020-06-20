@@ -34,7 +34,8 @@ export class Floor extends React.Component {
         });
     }
 
-    showSlots(){
+    handleClickEvent() {
+        this.props.selectFloor(this.props.floor.floorNo);
         this.props.setSlots(this.state.slots)
     }
 
@@ -42,7 +43,7 @@ export class Floor extends React.Component {
         return (
             <div>
                 {             
-                    <div className="floor m-1" onClick={this.showSlots.bind(this)}>
+                    <div className="floor m-1" onClick={this.handleClickEvent.bind(this)}>
                         {this.props.floor.floorNo}
                     </div>
                 }

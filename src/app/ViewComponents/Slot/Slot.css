@@ -1,5 +1,30 @@
 .slot {
-    height:100px;
-    width: 40px;
-    background-color: aquamarine;
+    /* background-color: aquamarine; */
+    background-size: cover;
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+}
+
+.backgroundImage{   
+    width: 100px;
+    height: 100px;
+}
+
+.backgroundMovingImage{   
+    width: 100px;
+    height: 100px;
+    animation: moveImage 3s linear infinite;
+}
+
+@keyframes moveImage {
+    0% {
+        transform: translateY(100px);
+    }
+    50% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-100px);
+    }
 }

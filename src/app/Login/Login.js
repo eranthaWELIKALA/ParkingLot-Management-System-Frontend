@@ -1,9 +1,9 @@
 import React from "react";
-import "./Login.css";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
+import PropTypes from 'prop-types';
 import axios from "axios";
 import { success, danger } from "../Util/Alert/Alerts";
-import { Redirect } from "react-router-dom";
+import "./Login.css";
 
 export class Login extends React.Component {
     constructor() {
@@ -13,6 +13,12 @@ export class Login extends React.Component {
             password: "",
             redirect: null
         }
+    }
+    componentDidMount(){
+        this.setState({
+            redirect: null
+        })
+        console.log(this.state.redirect)
     }
 
     handleNICChange = (event) => {
@@ -53,10 +59,15 @@ export class Login extends React.Component {
                 })
             }
             else{
+                let user = res.data;
+                localStorage.setItem("loggedInUser", JSON.stringify(user));
                 this.setState({
                     alert: success("Logged in successfully", false),
                     redirect: "/create_reservation"
-                })
+                }); 
+                
+                this.props.resetRedirect();               
+                this.props.updateLoggedInUser(user);
             }
         })
         .catch(err=>{
@@ -83,7 +94,7 @@ export class Login extends React.Component {
                                 NIC : 
                             </div>
                             <div className="col-lg-10 col-md-10 col-sm-8 col-xs-8">
-                                <input type="text" className="form-control" name="nic" onChange={this.handleNICChange} value={nic} required/>
+                                <input type="text" className="form-control" name="nic" onChange={this.handleNICChange.bind(this)} value={nic} required/>
                             </div>
                         </div>
                         <div className="row">
@@ -91,7 +102,7 @@ export class Login extends React.Component {
                                 Password : 
                             </div>
                             <div className="col-lg-10 col-md-10 col-sm-8 col-xs-8">
-                                <input type="password" className="form-control" name="password" onChange={this.handlePasswordChange} value={password} required/>
+                                <input type="password" className="form-control" name="password" onChange={this.handlePasswordChange.bind(this)} value={password} required/>
                             </div>
                         </div>
                         <div className="row">
@@ -109,4 +120,8 @@ export class Login extends React.Component {
             </div>
         )
     }
+}
+
+Login.propsTypes = {
+    updateLoggedInUser: PropTypes.func
 }

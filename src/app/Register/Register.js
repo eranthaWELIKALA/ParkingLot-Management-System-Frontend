@@ -193,7 +193,7 @@ export class Register extends React.Component {
                 console.log(res);
                 this.setState({
                     alert: success("User account was created successfully", false)
-                })
+                });
             })
             .catch(err=>{
                 console.log(err);

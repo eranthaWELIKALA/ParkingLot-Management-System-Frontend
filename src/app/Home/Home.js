@@ -1,7 +1,11 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import "./Home.css";
 
 export class Home extends React.Component {
+    constructor(){
+        super();
+    }
     render() {
         return (
             <div>
@@ -12,4 +16,8 @@ export class Home extends React.Component {
             </div>
         )
     }
+}
+
+Home.propsTypes = {
+    resetRedirect: PropTypes.func
 }
